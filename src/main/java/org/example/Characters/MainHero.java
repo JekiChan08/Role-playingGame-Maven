@@ -1,12 +1,15 @@
 package org.example.Characters;
 
-
-import org.example.item.Armor;
-import org.example.item.Items;
-import org.example.item.Weapon;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import org.example.item.*;
 
 import java.util.ArrayList;
 
+@Setter
+@AllArgsConstructor
+@Getter
 public class MainHero {
     private String name;
     private Rassa rassa;// Раса героя
@@ -34,72 +37,8 @@ public class MainHero {
         System.out.println("Броня: " + armor);
     }
 
-    public ArrayList<Items> getItems() {
-        return items;
-    }
-
-    public void setItems(ArrayList<Items> items) {
-        this.items = items;
-    }
-
-    public Weapon getWeapon() {
-        return weapon;
-    }
-
     public double getDamage() {
         return weapon.getDamage();
-    }
-
-    public void setWeapon(Weapon weapon) {
-        this.weapon = weapon;
-    }
-
-    public Armor getArmor() {
-        return armor;
-    }
-
-    public void setArmor(Armor armor) {
-        this.armor = armor;
-    }
-
-    public double getHealth() {
-        return health;
-    }
-
-    public void setHealth(double health) {
-        this.health = health;
-    }
-
-    public double getMoney() {
-        return money;
-    }
-
-    public void setMoney(double money) {
-        this.money = money;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Rassa getRassa() {
-        return rassa;
-    }
-
-    public void setRassa(Rassa rassa) {
-        this.rassa = rassa;
-    }
-
-    public PersonClass getPersonClass() {
-        return personClass;
-    }
-
-    public void setPersonClass(PersonClass personClass) {
-        this.personClass = personClass;
     }
 
     public void upgradeArmor(int increase) {

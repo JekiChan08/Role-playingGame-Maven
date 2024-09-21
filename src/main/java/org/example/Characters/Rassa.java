@@ -1,5 +1,12 @@
 package org.example.Characters;
 //Расса-гном, эльф итд
+
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@AllArgsConstructor
+@Getter
 public enum Rassa {
     //гном
     DWARF("Гном"),
@@ -11,18 +18,4 @@ public enum Rassa {
     ORC("Орк");
     private String title;
 
-    Rassa(String title) {
-        this.title = title;
-    }
-
-    Rassa() {
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 }

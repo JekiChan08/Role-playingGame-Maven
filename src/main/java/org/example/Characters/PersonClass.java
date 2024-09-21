@@ -1,6 +1,13 @@
 package org.example.Characters;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 //класс персонажа
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
 public enum PersonClass {
     WARRIOR("Воин"),
     MAG("Маг"),
@@ -8,18 +15,4 @@ public enum PersonClass {
 
     private String title;
 
-    PersonClass(String title) {
-        this.title = title;
-    }
-
-    PersonClass() {
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 }

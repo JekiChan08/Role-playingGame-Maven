@@ -1,30 +1,17 @@
 package org.example.item;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
 public class Armor {
     private String name;
     private int defense;// Защита брони в процентах
-
-    public Armor(String name, int defense) {
-        this.name = name;
-        this.defense = defense;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getDefense() {
-        return defense;
-    }
-
-    public void setDefense(int defense) {
-        this.defense = defense;
-    }
 
     public void upgradeDefense(int increase) {
         this.defense += increase;

@@ -1,5 +1,10 @@
 package org.example.item;
 
+
+import lombok.Getter;
+
+
+@Getter
 public enum Weapon {
     SWORD(10, 150, TypeDamage.PHYSICAL),
     GREAMUAR(10, 150, TypeDamage.MAGICAL);

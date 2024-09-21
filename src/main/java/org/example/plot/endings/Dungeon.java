@@ -1,12 +1,19 @@
 package org.example.plot.endings;
 
-import org.example.Characters.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
+
+import org.example.Characters.*;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
+@Setter
+@AllArgsConstructor
+@Getter
 public class Dungeon {
     private int level;
     private ArrayList<Enemies> enemies;
@@ -28,13 +35,14 @@ public class Dungeon {
     }
 
     public int choiceDungeon() {
-        System.out.println("Выберите действие:\n" +
-                "1) Пойти сражаться\n" +
-                "2) Проверить свои статы\n" +
-                "3) Улучшить оружие (75 монет)\n" +
-                "4) Улучшить защиту (100 монет)\n" +
-                "5) Использовать зелье (50 монет, восстанавливает 50 HP)\n" +
-                "любое другое) Выйти из игры");
+        System.out.println("""
+                Выберите действие:
+                1) Пойти сражаться
+                2) Проверить свои статы
+                3) Улучшить оружие (75 монет)
+                4) Улучшить защиту (100 монет)
+                5) Использовать зелье (50 монет, восстанавливает 50 HP)
+                любое другое) Выйти из игры""");
         try {
             return sc.nextInt();
         } catch (InputMismatchException e) {
@@ -162,14 +170,6 @@ public class Dungeon {
         }
     }
 
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
     public void battleOfBoss(MainHero mainHero) {
         Random rn = new Random();
         Boss boss = bosses.get(rn.nextInt(enemies.size()));
@@ -216,23 +216,6 @@ public class Dungeon {
             }
         }
     }
-
-    public ArrayList<Enemies> getEnemies() {
-        return enemies;
-    }
-
-    public void setEnemies(ArrayList<Enemies> enemies) {
-        this.enemies = enemies;
-    }
-
-    public ArrayList<Boss> getBosses() {
-        return bosses;
-    }
-
-    public void setBosses(ArrayList<Boss> bosses) {
-        this.bosses = bosses;
-    }
-
 
     private void bossAttack(MainHero mainHero, double bossDamage) {
         double damage = bossDamage * (1 - mainHero.getArmor().getDefense() / 100.0);
