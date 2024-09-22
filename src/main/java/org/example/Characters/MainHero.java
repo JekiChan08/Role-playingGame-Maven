@@ -19,12 +19,14 @@ public class MainHero {
     private Armor armor;// Броня героя
     private double money;// Деньги
     private ArrayList<Items> items;// Предметы
+    private boolean endGame;
 
     public MainHero() {
         this.health = 100;
         this.money = 0;
         this.armor = new Armor("Начальная броня", 20);  // Начальная броня с 20% защитой
         items = new ArrayList<>();
+        this.endGame = false;
     }
 
     // Метод для вывода всех статов героя

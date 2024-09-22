@@ -19,9 +19,10 @@ public class Dungeon {
     private ArrayList<Enemies> enemies;
     private ArrayList<Boss> bosses;
     private Scanner sc = new Scanner(System.in);
+    private Boss boss;
 
     public Dungeon() {
-        this.level = 1;
+        this.level = 9;
         enemies = new ArrayList<>();
         enemies.add(Enemies.SKELETON);
         enemies.add(Enemies.SPIDER);
@@ -32,6 +33,13 @@ public class Dungeon {
         enemies.add(Enemies.BASILISK);
         enemies.add(Enemies.COBALT);
         enemies.add(Enemies.CYCLOPS);
+        bosses = new ArrayList<>();
+        bosses.add(Boss.DRACULA);
+        bosses.add(Boss.DRAGON);
+        bosses.add(Boss.GRIFFIN);
+        bosses.add(Boss.GIANT_WORM);
+        Random rn = new Random();
+        boss = bosses.get(rn.nextInt(bosses.size()));
     }
 
     public int choiceDungeon() {
@@ -53,23 +61,41 @@ public class Dungeon {
     }
 
     public void start(MainHero mainHero) {
+
         System.out.println("Вы вошли в подземелье");
         boolean inDungeon = true;
 
         while (inDungeon) {
-            System.out.println("Текущий уровень подземелья: " + level);
-            if (level == 10) {
-                battleOfBoss(mainHero); //Битва с боссом
-                inDungeon = false;
+            if (level < 10) {
+                System.out.println("Текущий уровень подземелья: " + level);
+                switch (choiceDungeon()) {
+                    case 1 -> battle(mainHero); // Начать битву
+                    case 2 -> mainHero.getStats(); // Посмотреть статы героя
+                    case 3 -> upgradeWeapon(mainHero); // Улучшить оружие
+                    case 4 -> upgradeArmor(mainHero); // Улучшить броню
+                    case 5 -> usePotion(mainHero); // Использовать зелье
+                    default -> {
+                        System.out.println("Вы вышли из игры.");
+                        inDungeon = false;
+                    }
+                }
             }
-            switch (choiceDungeon()) {
-                case 1 -> battle(mainHero); // Начать битву
-                case 2 -> mainHero.getStats(); // Посмотреть статы героя
-                case 3 -> upgradeWeapon(mainHero); // Улучшить оружие
-                case 4 -> upgradeArmor(mainHero); // Улучшить броню
-                case 5 -> usePotion(mainHero); // Использовать зелье
-                default -> {
-                    System.out.println("Вы вышли из игры.");
+            if (level >= 10) {
+                switch (choiceDungeon()) {
+                    case 1 -> battleOfBoss(mainHero); //Битва с боссом
+                    case 2 -> mainHero.getStats(); // Посмотреть статы героя
+                    case 3 -> upgradeWeapon(mainHero); // Улучшить оружие
+                    case 4 -> upgradeArmor(mainHero); // Улучшить броню
+                    case 5 -> usePotion(mainHero); // Использовать зелье
+                    default -> {
+                        System.out.println("Вы вышли из игры.");
+                        inDungeon = false;
+                    }
+                }
+
+
+
+                if (mainHero.isEndGame()) {
                     inDungeon = false;
                 }
             }
@@ -171,9 +197,6 @@ public class Dungeon {
     }
 
     public void battleOfBoss(MainHero mainHero) {
-        Random rn = new Random();
-        Boss boss = bosses.get(rn.nextInt(enemies.size()));
-
         double bossHealth = 500;
         double bossDamage = 80;
         boolean inBattle = true;
@@ -194,6 +217,7 @@ public class Dungeon {
                         bossHealth -= mainHero.getDamage();
                         if (bossHealth <= 0) {
                             System.out.println("Вы победили " + boss.getName() + "!");
+                            mainHero.setEndGame(true);
                             inBattle = false;
                         } else {
                             bossAttack(mainHero, bossDamage);

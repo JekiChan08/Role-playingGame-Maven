@@ -6,7 +6,7 @@ import lombok.Getter;
 
 @Getter
 public enum Weapon {
-    SWORD(10, 150, TypeDamage.PHYSICAL),
+    SWORD(10000, 150, TypeDamage.PHYSICAL),
     GREAMUAR(10, 150, TypeDamage.MAGICAL);
 
     private double damage;

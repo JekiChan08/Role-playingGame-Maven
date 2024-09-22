@@ -20,6 +20,14 @@ public class Plot {
             }
             if (mainHero.getRassa() == Rassa.PERSON) {
                 EndPerson.start(mainHero);
+                if(mainHero.getHealth() > 0 && mainHero.isEndGame()) {
+                    System.out.println("""
+                            Поздравляю вас с победой над главным злодеем этого мира
+                            весь мир благодарна вам за то что вы смогли защитить
+                            их земли и семьи.
+                            Ваша победа навсегда останется в истории как спаситель земли.""");
+
+                }
                 endWhile = false;
             }
         }
