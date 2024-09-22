@@ -20,9 +20,11 @@ public class Dungeon {
     private ArrayList<Boss> bosses;
     private Scanner sc = new Scanner(System.in);
     private Boss boss;
+    private Thread attackEnemies;
+    private Thread attackBoss;
 
     public Dungeon() {
-        this.level = 9;
+        this.level = 1;
         enemies = new ArrayList<>();
         enemies.add(Enemies.SKELETON);
         enemies.add(Enemies.SPIDER);
@@ -116,6 +118,23 @@ public class Dungeon {
 
         System.out.println("Вы встретили врага: " + enemy.getName());
         System.out.println("Урон врага: " + enemyDamage + ", Здоровье врага: " + enemyHealth);
+        System.out.println("Ваше здоровье: " + mainHero.getHealth());
+        System.out.println("Если вы не ударите врага в течении 15-секунд, враг вас заметит и ударит, а также будет вас ударять каждые 10 секунд");
+
+        attackEnemies = new Thread(() -> {
+            boolean attackIn15sec = true;
+            while (attackIn15sec) {
+                try {
+                    Thread.sleep(15 * 1000);
+                    enemyAttack(mainHero, enemyDamage);
+                } catch (InterruptedException e) {
+                    attackIn15sec = false;
+                    Thread.currentThread().interrupt();
+                }
+            }
+
+        });
+        attackEnemies.start();
 
         while (inBattle) {
             System.out.println("\nВаши действия:\n" +
@@ -125,6 +144,7 @@ public class Dungeon {
 
             try {
                 int choice = sc.nextInt();
+                attackEnemies.interrupt();
                 switch (choice) {
                     case 1 -> {
                         enemyHealth -= mainHero.getDamage();
@@ -158,6 +178,7 @@ public class Dungeon {
         double damage = enemyDamage * (1 - mainHero.getArmor().getDefense() / 100.0);
         mainHero.setHealth(mainHero.getHealth() - damage);
         System.out.println("Враг атакует и наносит вам " + damage + " урона.");
+        System.out.println("Теперь у вас " + mainHero.getHealth() + " здоровья");
     }
 
     private void levelUp(MainHero mainHero, Enemies enemy) {
@@ -201,8 +222,26 @@ public class Dungeon {
         double bossDamage = 80;
         boolean inBattle = true;
 
+
         System.out.println("Вы встретили Босса подземелья: " + boss.getName());
         System.out.println("Урон врага: " + bossDamage + ", Здоровье врага: " + bossHealth);
+        System.out.println("Ваше здоровье: " + mainHero.getHealth());
+        System.out.println("если вы не ударите врага в течении 10-секунд, босс вас заметит и ударит");
+
+        attackBoss = new Thread(() -> {
+            boolean attackIn15sec = true;
+            while (attackIn15sec) {
+                try {
+                    Thread.sleep(15 * 1000);
+                    bossAttack(mainHero, bossDamage);
+                } catch (InterruptedException e) {
+                    attackIn15sec = false;
+                    Thread.currentThread().interrupt();
+                }
+            }
+
+        });
+        attackBoss.start();
 
         while (inBattle) {
             System.out.println("\nВаши действия:\n" +
@@ -212,6 +251,8 @@ public class Dungeon {
 
             try {
                 int choice = sc.nextInt();
+                attackEnemies.interrupt();
+
                 switch (choice) {
                     case 1 -> {
                         bossHealth -= mainHero.getDamage();
