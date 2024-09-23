@@ -36,7 +36,8 @@ public class Plot {
             }
         }
         else if (mainHero.getRassa().equals(Rassa.DWARF)) {
-            DwarfPlot.start(dwarfFortress);
+            new DwarfPlot().start(dwarfFortress);
+
         }
 
     }

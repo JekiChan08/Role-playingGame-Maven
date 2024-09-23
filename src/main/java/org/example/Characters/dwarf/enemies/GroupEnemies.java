@@ -18,12 +18,17 @@ public enum GroupEnemies {
 
 
     private final String name;
-    private final int damage;
-    private final int health;
+    private final double damage;
+    private final double health;
+    private final int coin;
+    private final int level;
+
 
     GroupEnemies(String name) {
-        this.damage = 20;
-        this.health = 20;
+        this.damage = ((20 * getLevel()) * 0.12);
+        this.health = (20 * getLevel()) * 0.12;
         this.name = name;
+        this.level = 1;
+        this.coin = 100;
     }
 }
