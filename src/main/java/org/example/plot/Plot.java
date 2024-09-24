@@ -1,7 +1,7 @@
 package org.example.plot;
 
 import org.example.Characters.*;
-import org.example.Characters.dwarf.DwarfFortress;
+import org.example.Characters.dwarf.Fortress;
 import org.example.plot.dwarfPlot.DwarfPlot;
 import org.example.plot.endings.*;
 
@@ -11,7 +11,7 @@ import java.util.InputMismatchException;
 public class Plot {
     public static void startingPlot() {
         MainHero mainHero = new MainHero();
-        DwarfFortress dwarfFortress = new DwarfFortress();
+        Fortress dwarfFortress = new Fortress();
         //начало сюжета
         boolean endWhile = true;
         while (endWhile) {
@@ -36,7 +36,7 @@ public class Plot {
             }
         }
         else if (mainHero.getRassa().equals(Rassa.DWARF)) {
-            new DwarfPlot().start(dwarfFortress);
+            new DwarfPlot(dwarfFortress).start();
 
         }
 

@@ -1,7 +1,6 @@
 package org.example.Characters.dwarf.enemies;
 
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter

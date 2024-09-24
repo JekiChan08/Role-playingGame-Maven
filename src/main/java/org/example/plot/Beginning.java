@@ -2,14 +2,14 @@ package org.example.plot;
 
 
 import org.example.Characters.*;
-import org.example.Characters.dwarf.DwarfFortress;
+import org.example.Characters.dwarf.Fortress;
 import org.example.item.*;
 
 import java.util.Scanner;
 
 public class Beginning {
     //выбор имени рассы и класса
-    public static void ChoosingRace(MainHero mainHero, DwarfFortress dwarfFortress) {
+    public static void ChoosingRace(MainHero mainHero, Fortress dwarfFortress) {
         boolean whileBeginning = true;
         while (whileBeginning ) {
             boolean endWhile = true;
@@ -42,7 +42,7 @@ public class Beginning {
                         endWhile = false;
                         System.out.println("Привет игрок! Как назовёш свою крепость?");
                         String nameFort = sc.next();
-                        dwarfFortress.setFortressName(nameFort);
+                        dwarfFortress.setName(nameFort);
                         mainHero.setRassa(Rassa.DWARF);
                         whileBeginning = false;
                         break;
