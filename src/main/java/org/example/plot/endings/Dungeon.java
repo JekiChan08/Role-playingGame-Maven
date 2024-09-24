@@ -251,7 +251,7 @@ public class Dungeon {
 
             try {
                 int choice = sc.nextInt();
-                attackEnemies.interrupt();
+                attackBoss.interrupt();
 
                 switch (choice) {
                     case 1 -> {

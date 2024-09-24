@@ -29,6 +29,20 @@ public class Plot {
 
                 }
                 endWhile = false;
+            } else if (mainHero.getRassa() == Rassa.ELF) {
+                EndElf.start(mainHero);
+                if(mainHero.getHealth() > 0 && mainHero.isEndGame()) {
+                    System.out.println("""
+                            Поздравляю"""
+                              + mainHero.getName() +
+                            """
+                            с победой над главным злодеем этого мира
+                            весь мир благодарна вам за то что вы смогли защитить
+                            их земли и семьи.
+                            Ваша победа навсегда останется в истории как спаситель земли.""");
+
+                }
+                endWhile = false;
             }
         }
     }
