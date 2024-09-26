@@ -2,6 +2,7 @@ package org.example.Characters.dwarf;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.example.Characters.dwarf.enemies.GroupEnemies;
 
 import java.util.ArrayList;
 
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 @Setter
 public class Fortress {
     private String name;
-    private int health;
+    private double health;
     private ArrayList<Gate> gates;
     private ArrayList<DwarfGroup> dwarfGroups;
     private int provision;
@@ -18,18 +19,22 @@ public class Fortress {
     private int days;
 
     public Fortress() {
-        this.name = name;
-        this.health = 1000;
+        this.health = 500;
         this.gates = new ArrayList<>();
         this.dwarfGroups = new ArrayList<>();
-        this.provision = 4;
-        this.balance = 2000;
+        this.provision = 2;
+        this.balance = 100;
         this.experience = 1;
+        this.days = 1;
 
-        gates.add(new Gate("Левый", 500));
-        gates.add(new Gate("Правый", 500));
-        gates.add(new Gate("Верхний", 500));
-        gates.add(new Gate("Нижний", 500));
+        Gate left = new Gate("На Левых воротах", 500);
+        gates.add(left);
+        Gate right = new Gate("На правых воротах", 500);
+        gates.add(right);
+        Gate upper = new Gate("На верхних воротах", 500);
+        gates.add(upper);
+        Gate lower = new Gate("На нижних воротах", 500);
+        gates.add(lower);
 
         dwarfGroups.add(new DwarfGroup());
         dwarfGroups.add(new DwarfGroup());
