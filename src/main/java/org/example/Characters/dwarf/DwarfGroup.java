@@ -12,12 +12,15 @@ public class DwarfGroup {
     private double damage;
     private double protection;
     private int level;
+    private double maxHealth;
+
 
     public DwarfGroup() {
         this.level = 1;
         this.damage = new Random().nextInt(20, 30);
         this.health = new Random().nextInt(23, 33);
         this.protection = new Random().nextInt(1, 10);
+        this.maxHealth = health;
     }
 
     public void levelUp() {

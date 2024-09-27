@@ -122,12 +122,10 @@ public class Gate {
 
 
     public void printEnemies() {
-        System.out.println();
         for (int i = 0; i < steps.length; i++) {
             if (steps[i] != null) {
                 System.out.print(name + " ");
                 System.out.print("на растоянии " + i + "км идут " + steps[i].getName() + "\n");
-
             }
         }
     }

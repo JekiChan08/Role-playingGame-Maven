@@ -37,6 +37,13 @@ public class DwarfPlot {
     }
 
     public void start() {
+        if (fortress.getDays() > 1) {
+            for (int i = 0; i < fortress.getDwarfGroups().size(); i++) {
+                fortress.getDwarfGroups().get(i).setHealth(fortress.getDwarfGroups().get(i).getMaxHealth());
+            }
+            System.out.println("Все ваши гномы востонавилиь после битвы");
+        }
+
         if (fortress.getDays() >= 7) {
             System.out.println("""
                     Вы продержались эти адские недели и смогли защитить свой народ от злых монстров.
@@ -88,7 +95,7 @@ public class DwarfPlot {
                     default -> System.out.println("Такого выбора нет");
                 }
                 if (fortress.getHealth() <= 0) {
-                    System.out.println("Ваша крепость пала");
+                    System.out.println("Ваша крепость пала, вы боролись как могли но враги оказалиь слишком сильными");
                     endWhile = false;
                 } else if (fortress.getProvision() <= 0) {
                     System.out.println("В вашей крепости все умерли из-за голода");
@@ -103,9 +110,7 @@ public class DwarfPlot {
     public void fortressDefense() {
         int wave = fortress.getDays();
         System.out.println("Волна: " + wave);
-        double enemiesDamage = 20 * wave;
-        double enemiesHealth = 20 * wave;
-        int coin = 100;
+
         ArrayList<EnemiesGroup> allEnemies = new ArrayList<>();
         for (int i = -1; i < wave; i++) {
             int rnNum = random.nextInt(enemies.size());
@@ -116,7 +121,6 @@ public class DwarfPlot {
         boolean motion = false;
         while (inBattle) {
             int enemiesInAttackCount = 0;
-            boolean inAllEnemiesDied = false;
             for (int rnNum = random.nextInt(fortress.getGates().size()); enemiesInAttackCount < allEnemies.size(); ) {
                 if (fortress.getGates().get(rnNum).AddEnemiesToThePolygon(allEnemies.get(allEnemies.size() - 1))){
                     allEnemies.remove(allEnemies.size() - 1);
@@ -134,7 +138,7 @@ public class DwarfPlot {
             int choice = sc.nextInt();
             switch (choice) {
                 case 1 : {
-                    if (otpravkaDwarfs()) {
+                    if (toPutDwarfs()) {
                         motion = true;
                         break;
                     }else {
@@ -171,7 +175,7 @@ public class DwarfPlot {
                                 if (fortress.getGates().get(i).getDwarf()[0].getHealth() <= 0) {
 
                                     fortress.getGates().get(i).getDwarf()[0] = null;
-                                    System.out.println("Группа гномов " + fortress.getGates().get(i).getName() + "были убиты");
+                                    System.out.println("Группа гномов " + fortress.getGates().get(i).getName() + " были убиты");
                                 }
                             }
                             else {
@@ -191,8 +195,8 @@ public class DwarfPlot {
             }
             if (isAllDeadEnemies()) {
                 if (!recerv.isEmpty()) {
-                    for (int i = 0; i < recerv.size(); i++) {
-                        fortress.getDwarfGroups().add(recerv.get(i));
+                    for (DwarfGroup dwarfGroup : recerv) {
+                        fortress.getDwarfGroups().add(dwarfGroup);
                     }
                 }
                 for (int i = 0; i < fortress.getGates().size(); i++) {
@@ -200,6 +204,9 @@ public class DwarfPlot {
                 }
                 System.out.println("Все враги были повержены");
                 fortress.setDays(fortress.getDays() + 1);
+                for (EnemiesGroup enemy : enemies) {
+                    enemy.levelUp();
+                }
                 return;
             }
             motion = false;
@@ -257,7 +264,7 @@ public class DwarfPlot {
     }
 
 
-    public boolean otpravkaDwarfs() {
+    public boolean toPutDwarfs() {
         while (true) {
             if (!fortress.getDwarfGroups().isEmpty()) {
                 for (int i = 0; i < fortress.getDwarfGroups().size(); i++) {
