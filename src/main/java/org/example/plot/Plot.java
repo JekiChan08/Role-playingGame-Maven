@@ -21,17 +21,6 @@ public class Plot {
             } catch (InputMismatchException e) {
                 System.out.println("Нельзя писать что то другое кроме целочисленных цифер");
                 endWhile = false;
-            } else if (mainHero.getRassa() == Rassa.ELF) {
-                EndElf.start(mainHero);
-                if(mainHero.getHealth() > 0 && mainHero.isEndGame()) {
-                    System.out.println("""
-                            \u001B[93mПосле победы над Духом Леса свет медленно возвращается в Лихолесье.
-                            Тьма рассеялась, и лес снова начинает дышать свободно.\n"""
-                            + mainHero.getName() + "возвращается к своему народу как герой,\n" +
-                            "но понимает, что это только начало его пути как защитника леса\u001B[0m");
-
-                }
-                endWhile = false;
             }
         }
         // концовка за рассу человека
@@ -49,6 +38,17 @@ public class Plot {
         else if (mainHero.getRassa().equals(Rassa.DWARF)) {
             new DwarfPlot(dwarfFortress).start();
 
+        }
+        else if (mainHero.getRassa() == Rassa.ELF) {
+            EndElf.start(mainHero);
+            if (mainHero.getHealth() > 0 && mainHero.isEndGame()) {
+                System.out.println("""
+                        \u001B[93mПосле победы над Духом Леса свет медленно возвращается в Лихолесье.
+                        Тьма рассеялась, и лес снова начинает дышать свободно.\n"""
+                        + mainHero.getName() + "возвращается к своему народу как герой,\n" +
+                        "но понимает, что это только начало его пути как защитника леса\u001B[0m");
+
+            }
         }
 
     }

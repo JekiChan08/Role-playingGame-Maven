@@ -49,6 +49,10 @@ public class Beginning {
                     case 3:
                         mainHero.setRassa(Rassa.ELF);
                         System.out.println("Теперь ваша расса: " + mainHero.getRassa().getTitle());
+
+                        System.out.println("Привет игрок как тебя зовут?");
+                        String name3 = sc.next();
+                        mainHero.setName(name3);
                         endWhile = false;
                         break;
                     case 4:
@@ -63,7 +67,7 @@ public class Beginning {
                 }
             }
             // сэжет не за дварфа
-            if (mainHero.getRassa().equals(Rassa.PERSON)) {
+            if (!mainHero.getRassa().equals(Rassa.DWARF)) {
                 endWhile = true;
                 while (endWhile) {
                     System.out.println(mainHero.getName() + " Выберете класс для вашего персонажа: \n" +
@@ -89,7 +93,7 @@ public class Beginning {
                         }
                     }
                 }
-                if (mainHero.getRassa().equals(Rassa.PERSON)) {
+                if (!mainHero.getRassa().equals(Rassa.DWARF)) {
                     endWhile = true;
                     while (endWhile) {
                         if (mainHero.getPersonClass() == PersonClass.WARRIOR) {
