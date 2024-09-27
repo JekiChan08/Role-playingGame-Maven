@@ -2,31 +2,28 @@ package org.example.plot;
 
 
 import org.example.Characters.*;
+import org.example.Characters.dwarf.Fortress;
 import org.example.item.*;
 
 import java.util.Scanner;
 
 public class Beginning {
     //выбор имени рассы и класса
-    public static void ChoosingRace(MainHero mainHero) {
+    public static void ChoosingRace(MainHero mainHero, Fortress dwarfFortress) {
         boolean whileBeginning = true;
         while (whileBeginning ) {
-
-            System.out.println("Привет игрок как тебя зовут?");
-            Scanner sc = new Scanner(System.in);
-            String name = sc.next();
-            mainHero.setName(name);
-
             boolean endWhile = true;
+            Scanner sc = new Scanner(System.in);
 
             while (endWhile) {
 
-                System.out.println("Здравствуйте " + mainHero.getName() + ", выберите рассу написав число:\n" +
-                        "1) Человек\n" +
-                        "2) Гном\n" +
-                        "3) Эльф\n" +
-                        "4) Орк\n" +
-                        "по выбранному персоважу будет по разному развиваться сюжет");
+                System.out.println("""
+                        Здравствуй игрок выбери рассу написав число:
+                        1) Человек
+                        2) Гном
+                        3) Эльф
+                        4) Орк
+                        по выбранному персоважу будет по разному развиваться сюжет""");
 
                 int rassNum = sc.nextInt();
 
@@ -36,11 +33,18 @@ public class Beginning {
                         mainHero.setRassa(Rassa.PERSON);
                         System.out.println("Теперь ваша расса: " + mainHero.getRassa().getTitle());
                         endWhile = false;
+                        System.out.println("Привет игрок как тебя зовут?");
+                        String name = sc.next();
+                        mainHero.setName(name);
                         break;
                     case 2:
-                        mainHero.setRassa(Rassa.DWARF);
-                        System.out.println("Теперь ваша расса: " + mainHero.getRassa().getTitle());
+                        System.out.println("Теперь вы играете за рассу Гнома!");
                         endWhile = false;
+                        System.out.println("Привет игрок! Как назовёш свою крепость?");
+                        String nameFort = sc.next();
+                        dwarfFortress.setName(nameFort);
+                        mainHero.setRassa(Rassa.DWARF);
+                        whileBeginning = false;
                         break;
                     case 3:
                         mainHero.setRassa(Rassa.ELF);
@@ -58,44 +62,49 @@ public class Beginning {
                     }
                 }
             }
-            endWhile = true;
-            while (endWhile) {
-                System.out.println(mainHero.getName() + " Выберете класс для вашего персонажа: \n" +
-                        "1) воин\n" +
-                        "2) маг\n");
-                int classPerson = sc.nextInt();
-                switch (classPerson) {
-                    case 1: {
-                        mainHero.setPersonClass(PersonClass.WARRIOR);
-                        System.out.println("Теперь вы: " + mainHero.getPersonClass().getTitle());
-                        endWhile = false;
-                        break;
-                    }
-                    case 2: {
-                        mainHero.setPersonClass(PersonClass.MAG);
-                        System.out.println("Теперь вы: " + mainHero.getPersonClass().getTitle());
-                        endWhile = false;
-                        break;
-                    }
-                    default: {
-                        System.out.println("Такого класса нет, выберите то что предложено");
-                        break;
+            // сэжет не за дварфа
+            if (mainHero.getRassa().equals(Rassa.PERSON)) {
+                endWhile = true;
+                while (endWhile) {
+                    System.out.println(mainHero.getName() + " Выберете класс для вашего персонажа: \n" +
+                            "1) воин\n" +
+                            "2) маг\n");
+                    int classPerson = sc.nextInt();
+                    switch (classPerson) {
+                        case 1: {
+                            mainHero.setPersonClass(PersonClass.WARRIOR);
+                            System.out.println("Теперь вы: " + mainHero.getPersonClass().getTitle());
+                            endWhile = false;
+                            break;
+                        }
+                        case 2: {
+                            mainHero.setPersonClass(PersonClass.MAG);
+                            System.out.println("Теперь вы: " + mainHero.getPersonClass().getTitle());
+                            endWhile = false;
+                            break;
+                        }
+                        default: {
+                            System.out.println("Такого класса нет, выберите то что предложено");
+                            break;
+                        }
                     }
                 }
-            }
-            endWhile = true;
-            while (endWhile) {
-                if (mainHero.getPersonClass() == PersonClass.WARRIOR) {
-                    System.out.println("Вам выдаеться базовай меч!");
-                    mainHero.setWeapon(Weapon.SWORD);
-                    endWhile = false;
-                    whileBeginning = false;
+                if (mainHero.getRassa().equals(Rassa.PERSON)) {
+                    endWhile = true;
+                    while (endWhile) {
+                        if (mainHero.getPersonClass() == PersonClass.WARRIOR) {
+                            System.out.println("Вам выдаеться базовай меч!");
+                            mainHero.setWeapon(Weapon.SWORD);
+                            endWhile = false;
+                            whileBeginning = false;
 
-                } else if (mainHero.getPersonClass() == PersonClass.MAG) {
-                    System.out.println("Вам выдаеться базовай гримуар!");
-                    mainHero.setWeapon(Weapon.GREAMUAR);
-                    endWhile = false;
-                    whileBeginning = false;
+                        } else if (mainHero.getPersonClass() == PersonClass.MAG) {
+                            System.out.println("Вам выдаеться базовай гримуар!");
+                            mainHero.setWeapon(Weapon.GREAMUAR);
+                            endWhile = false;
+                            whileBeginning = false;
+                        }
+                    }
                 }
             }
         }
