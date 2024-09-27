@@ -14,7 +14,8 @@ public enum Boss {
     DRACULA("Дракула", 500, 90),
     DRAGON("Дракон", 500, 90),
     GIANT_WORM("Гиганский Червь", 500, 90),
-    GRIFFIN("Грифон", 500, 90);
+    GRIFFIN("Грифон", 500, 90),
+    NAZGUL("Назгул", 500, 90);
 
     private String name;
     //жизнь

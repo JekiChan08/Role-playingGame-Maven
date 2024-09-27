@@ -32,11 +32,11 @@ public class MainHero {
     // Метод для вывода всех статов героя
     public void getStats() {
         System.out.println("Ваши статы:");
-        System.out.println("Здоровье: " + health);
-        System.out.println("Урон: " + weapon.getDamage());
-        System.out.println("Класс: " + personClass.getTitle());
-        System.out.println("Деньги: " + money);
-        System.out.println("Броня: " + armor);
+        System.out.println("Здоровье: \u001B[34m" + health + "\u001B[0m");
+        System.out.println("Урон: \u001B[34m" + weapon.getDamage() + "\u001B[0m");
+        System.out.println("Класс: \u001B[34m" + personClass.getTitle() + "\u001B[0m");
+        System.out.println("Деньги: \u001B[34m" + money + "\u001B[0m");
+        System.out.println("Броня: \u001B[34m" + armor + "\u001B[0m");
     }
 
     public double getDamage() {

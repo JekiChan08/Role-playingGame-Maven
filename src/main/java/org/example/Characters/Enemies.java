@@ -17,7 +17,9 @@ public enum Enemies {
     BASILISK( "Василиск", 70, 50, 100),
     GIANT("Гигант", 70, 50, 100),
     SPIDER("Паук", 70, 50, 100),
-    CYCLOPS("Циклоп", 70, 50, 100);
+    CYCLOPS("Циклоп", 70, 50, 100),
+    SPYSPIRIT("Дух-шпион", 70, 20, 100),
+    DRAUGLIN("Драуглин", 70, 30, 100);
 
 
     private String name;
