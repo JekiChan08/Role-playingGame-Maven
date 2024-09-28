@@ -15,7 +15,9 @@ public enum Rassa {
     //человек
     PERSON("Человек"),
     //орк
-    ORC("Орк");
+    ORC("Орк"),
+    MAGICAL_BEST("Маг-Зверь");
+
     private String title;
 
 }

@@ -2,6 +2,7 @@ package org.example.plot;
 
 
 import org.example.Characters.*;
+import org.example.Characters.MagicalBest.PC;
 import org.example.Characters.dwarf.Fortress;
 import org.example.item.*;
 
@@ -9,7 +10,7 @@ import java.util.Scanner;
 
 public class Beginning {
     //выбор имени рассы и класса
-    public static void ChoosingRace(MainHero mainHero, Fortress dwarfFortress) {
+    public static void ChoosingRace(MainHero mainHero, Fortress dwarfFortress, PC pc) {
         boolean whileBeginning = true;
         while (whileBeginning ) {
             boolean endWhile = true;
@@ -23,6 +24,7 @@ public class Beginning {
                         2) Гном
                         3) Эльф
                         4) Орк
+                        5) Маг-Зверь
                         по выбранному персоважу будет по разному развиваться сюжет""");
 
                 int rassNum = sc.nextInt();
@@ -60,6 +62,16 @@ public class Beginning {
                         System.out.println("Теперь ваша расса: " + mainHero.getRassa().getTitle());
                         endWhile = false;
                         break;
+                    case 5: {
+                        mainHero.setRassa(Rassa.MAGICAL_BEST);
+                        System.out.println("Теперь ваша расса: " + mainHero.getRassa().getTitle());
+                        System.out.println("Привет игрок как тебя зовут?");
+                        String name5 = sc.next();
+                        pc.setName(name5);
+                        whileBeginning = false;
+                        endWhile = false;
+                        break;
+                    }
                     default: {
                         System.out.println("Такой рассы нету на выбор, выберите снова");
                         break;
@@ -67,7 +79,7 @@ public class Beginning {
                 }
             }
             // сэжет не за дварфа
-            if (!mainHero.getRassa().equals(Rassa.DWARF)) {
+            if (!mainHero.getRassa().equals(Rassa.DWARF) && !mainHero.getRassa().equals(Rassa.MAGICAL_BEST)) {
                 endWhile = true;
                 while (endWhile) {
                     System.out.println(mainHero.getName() + " Выберете класс для вашего персонажа: \n" +
