@@ -1,7 +1,9 @@
 package org.example.plot;
 
 import org.example.Characters.*;
+import org.example.Characters.MagicalBest.PC;
 import org.example.Characters.dwarf.Fortress;
+import org.example.plot.MagicalBestPost.PlotMagicalBest;
 import org.example.plot.dwarfPlot.DwarfPlot;
 import org.example.plot.endings.*;
 
@@ -12,11 +14,12 @@ public class Plot {
     public static void startingPlot() {
         MainHero mainHero = new MainHero();
         Fortress dwarfFortress = new Fortress();
+        PC pc = new PC();
         //начало сюжета
         boolean endWhile = true;
         while (endWhile) {
             try {
-                Beginning.ChoosingRace(mainHero, dwarfFortress);
+                Beginning.ChoosingRace(mainHero, dwarfFortress, pc);
                 endWhile = false;
             } catch (InputMismatchException e) {
                 System.out.println("Нельзя писать что то другое кроме целочисленных цифер");
@@ -49,6 +52,9 @@ public class Plot {
                         "но понимает, что это только начало его пути как защитника леса\u001B[0m");
 
             }
+        }
+        else if (mainHero.getRassa().equals(Rassa.MAGICAL_BEST)) {
+            new PlotMagicalBest().start(pc);
         }
 
     }

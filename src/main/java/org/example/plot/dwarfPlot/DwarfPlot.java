@@ -20,12 +20,12 @@ public class DwarfPlot {
     private Random random = new Random();
     private Scanner sc = new Scanner(System.in);
     private ArrayList<EnemiesGroup> enemies;
-    private ArrayList<DwarfGroup> recerv;
+    private ArrayList<DwarfGroup> reserve;
 
     public DwarfPlot(Fortress fortress) {
         this.fortress = fortress;
         enemies = new ArrayList<>();
-        recerv = new ArrayList<>();
+        reserve = new ArrayList<>();
         enemies.add(new EnemiesGroup(GroupEnemies.VAMPIRE));
         enemies.add(new EnemiesGroup(GroupEnemies.GOBLIN));
         enemies.add(new EnemiesGroup(GroupEnemies.SKELETON));
@@ -194,8 +194,8 @@ public class DwarfPlot {
                 return;
             }
             if (isAllDeadEnemies()) {
-                if (!recerv.isEmpty()) {
-                    for (DwarfGroup dwarfGroup : recerv) {
+                if (!reserve.isEmpty()) {
+                    for (DwarfGroup dwarfGroup : reserve) {
                         fortress.getDwarfGroups().add(dwarfGroup);
                     }
                 }
@@ -251,9 +251,9 @@ public class DwarfPlot {
             if (fortress.getGates().get(choice).isPlaceOfProtection()) {
                 if (fortress.getGates().get(choice).getDwarf()[i] != null) {
                     fortress.getDwarfGroups().add(fortress.getGates().get(choice).getDwarf()[i]);
-                    for (int j = 0; j < recerv.size(); j++) {
-                        if (recerv.get(i) == fortress.getGates().get(choice).getDwarf()[i]) {
-                            recerv.remove(i);
+                    for (int j = 0; j < reserve.size(); j++) {
+                        if (reserve.get(i) == fortress.getGates().get(choice).getDwarf()[i]) {
+                            reserve.remove(i);
                         }
                     }
                     fortress.getGates().get(choice).getDwarf()[i] = null;
@@ -292,7 +292,7 @@ public class DwarfPlot {
                     }
                     if (choiceInGate >= 0 && choiceInGate <= fortress.getGates().size()) {
                         if (fortress.getGates().get(choiceInGate).dwarfOfProtection(fortress.getDwarfGroups().get(choice))) {
-                            recerv.add(fortress.getDwarfGroups().get(choice));
+                            reserve.add(fortress.getDwarfGroups().get(choice));
                             fortress.getDwarfGroups().remove(choice);
                             return true;
                         }
