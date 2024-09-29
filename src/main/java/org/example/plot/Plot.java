@@ -53,6 +53,15 @@ public class Plot {
 
             }
         }
+        else if (mainHero.getRassa() == Rassa.ORC) {
+            EndOrc.start(mainHero);
+            if (mainHero.getHealth() > 0 && mainHero.isEndGame()) {
+                System.out.println(
+                        "\u001B[93mПобедив могучего Эльфа, " + mainHero.getName() + " чувствует могущество, \n" +
+                        "Он теперь готов вернуться и собрать остатки орочьих кланов, чтобы начать новую эпоху завоеваний. \n" +
+                        "Забытая Пустошь будет первым испытанием для его армии, и  " + mainHero.getName() + "  станет её новым хозяином. \u001B[0m");
+            }
+        }
         else if (mainHero.getRassa().equals(Rassa.MAGICAL_BEST)) {
             new PlotMagicalBest().start(pc);
         }
