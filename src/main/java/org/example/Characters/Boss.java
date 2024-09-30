@@ -15,6 +15,7 @@ public enum Boss {
     DRAGON("Дракон", 500, 90),
     GIANT_WORM("Гиганский Червь", 500, 90),
     GRIFFIN("Грифон", 500, 90),
+    ELF("Эльф", 500, 90),
     NAZGUL("Назгул", 500, 90);
 
     private String name;

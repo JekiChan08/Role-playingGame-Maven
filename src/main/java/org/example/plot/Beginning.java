@@ -60,6 +60,10 @@ public class Beginning {
                     case 4:
                         mainHero.setRassa(Rassa.ORC);
                         System.out.println("Теперь ваша расса: " + mainHero.getRassa().getTitle());
+
+                        System.out.println("Привет игрок как тебя зовут?");
+                        String name4 = sc.next();
+                        mainHero.setName(name4);
                         endWhile = false;
                         break;
                     case 5: {
