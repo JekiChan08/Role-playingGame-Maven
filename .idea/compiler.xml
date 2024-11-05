@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Role-playingGame-Maven" />
+        <module name="Role-playing-Game-Maven" />
       </profile>
     </annotationProcessing>
   </component>
